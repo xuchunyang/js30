@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+    <script>
+      const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+      function makeGreen() {
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
+      }
+
+      // Regular
+      console.log('hello');
+
+      // Interpolated
+      let testInterpolation = '💩';
+      console.log('Testing interpolated: %s <-- This should be poop!', testInterpolation);
+      // Interpolation using ES6 template strings
+      console.log(`Testing ES6 interpolation: ${testInterpolation} <-- This should be poop!`);
+
+      // Styled - Apply styling to a log event using %c
+      console.log('%c Styling sutff maybe?', 'font-size: 1.2em; color: blue;');
+
+      // Warnings - Display a log event preceded with a caution sign
+      console.warn(`WARNING: You're displaying a warning! You winner!`);
+
+      // Error - Display a log event hightlighted in red with an 'x'
+      console.error('This is an error display!');
+      
+      // Info - Display a log event preceded by an 'i'
+      console.info('Display relevant information to this log!');
+
+      // Testing
+      const p = document.querySelector('p');
+      console.assert(p.classList.contains('expected-class-name'), 'NOPE');
+
+      // clearing
+      // console.clear();
+
+      // Viewing DOM Elements
+      console.log(p);
+      console.dir(p);
+
+      // Grouping together - Log out related information in a collapsible group
+      dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`Dog name: ${dog.name}`);
+        console.log(`${dog.name}'s age: ${dog.age} yrs old`);
+        console.log(`${dog.name} age (dog years): ${dog.age * 7}`);
+        console.groupEnd(`${dog.name}`);
+      });
+      
+      
+      // counting - Log out a given statement followed by a colon + the amount
+      //            this particular statement has already been logged
+      console.count('WEEWOO');
+      console.count('Woo!');
+      console.count('Woo!')
+      console.count('Wee?')
+      console.count('Wee?')
+      console.count('Woo!')
+      console.count('Wee?')
+      console.count('WEEWOO');
+      console.count('WEEWOO');
+      console.count('WEEWOO');
+      console.count('Wee?')
+      console.count('Wee?')
+      console.count('Wee?')
+      console.count('Wee?')
+      console.count('Wee?')
+
+      // Time - Log out the time taken to perform a given action
+      console.time('Fetch data timer'); // Label for timer
+      fetch('https://api.github.com/users/xuchunyang')
+  .then(data => data.json())
+  .then(data => {
+    console.timeEnd('Fetch data timer');
+    console.log(data);
+  });
+
+      // Table - Log out array/object data in 
+      console.table(dogs);
+
+      // Provide properties to be displayed in the table as an array of string values
+      // corresponding with property names
+      console.table(dogs, ["age"]);
+    </script>
+  </body>
+</html>
